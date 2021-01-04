@@ -1,0 +1,24 @@
+    vector<int> twoSum(vector<int>& vec, int x) {
+        vector<int> ans;
+        unordered_map<int,int> mymap;
+        for(int i = 0;i < vec.size();i++){
+            if(mymap.find(vec[i]) != mymap.end()){
+                if(vec[i] * 2 == x){
+                    ans.push_back(i);
+                    ans.push_back(mymap.find(vec[i])->second);
+                    return ans;
+                }
+            }
+            mymap.insert({vec[i],i});
+        }
+        for(int i = 0;i < vec.size();i++){
+            if(mymap.find(x-vec[i]) != mymap.end()){
+                if(mymap.find(x-vec[i])->second != mymap.find(vec[i])->second){
+                ans.push_back(mymap.find(vec[i])->second);
+                ans.push_back(mymap.find(x-vec[i])->second);
+                return ans;
+                }
+            }
+        }
+        return ans;
+    }
